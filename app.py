@@ -8,10 +8,25 @@ st.set_page_config(page_title="Free DeepSeek Chat", page_icon="🤖")
 components.html(
     """
     <script>
+        // Inject the Context7 script
         var script = window.parent.document.createElement('script');
         script.src = 'https://context7.com/widget.js';
         script.setAttribute('data-library', '/zwelshman/chat_streamlit');
         window.parent.document.head.appendChild(script);
+
+        // Inject CSS to constrain the widget size
+        var style = window.parent.document.createElement('style');
+        style.textContent = `
+            [id*="context7"] iframe,
+            [class*="context7"] iframe,
+            [id*="context7-widget"],
+            [class*="context7-widget"] {
+                width: 380px !important;
+                height: 500px !important;
+                max-height: 60vh !important;
+            }
+        `;
+        window.parent.document.head.appendChild(style);
     </script>
     """,
     height=0,
