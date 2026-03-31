@@ -26,7 +26,7 @@ if prompt := st.chat_input("Ask DeepSeek anything..."):
     with st.chat_message("assistant"):
         # Model ID for DeepSeek-R1 Distill Llama 70B on Groq
         response = client.chat.completions.create(
-            model="deepseek-r1-distill-llama-70b",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
