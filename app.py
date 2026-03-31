@@ -33,6 +33,12 @@ if prompt := st.chat_input("Ask DeepSeek anything..."):
             ],
             stream=False # Set to True for real-time typing effect
         )
+        
+        full_response = response.choices[0].message.content
+        st.markdown(full_response)
+        
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
+
 
 import streamlit.components.v1 as components
 
@@ -46,8 +52,3 @@ widget_code = """
 # but you can adjust it if the widget needs to render a container.
 components.html(widget_code, height=0)
 
-        
-        full_response = response.choices[0].message.content
-        st.markdown(full_response)
-        
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
