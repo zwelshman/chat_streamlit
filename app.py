@@ -1,20 +1,14 @@
 import streamlit as st
-import streamlit.components.v1 as components
 from groq import Groq
 
 st.set_page_config(page_title="Free DeepSeek Chat", page_icon="🤖")
 
-# Inject Context7 widget into parent page by escaping the iframe
-components.html(
+# ✅ Inject Context7 widget directly into the page (not inside an iframe)
+st.markdown(
     """
-    <script>
-        var script = window.parent.document.createElement('script');
-        script.src = 'https://context7.com/widget.js';
-        script.setAttribute('data-library', '/zwelshman/chat_streamlit');
-        window.parent.document.head.appendChild(script);
-    </script>
+    <script src="https://context7.com/widget.js" data-library="/zwelshman/chat_streamlit"></script>
     """,
-    height=0,
+    unsafe_allow_html=True,
 )
 
 st.title("DeepSeek-R1 on Groq (Free)")
