@@ -41,14 +41,10 @@ if prompt := st.chat_input("Ask DeepSeek anything..."):
 
 
 import streamlit.components.v1 as components
-
-# Define the widget HTML string
-widget_code = """
-<script src="https://context7.com/widget.js" data-library="/zwelshman/chat_streamlit"></script>
-"""
-
-# Embed the widget
-# height=0 is often used for invisible or floating widgets, 
-# but you can adjust it if the widget needs to render a container.
-components.html(widget_code, height=0)
-
+components.html(
+    """
+    <style>body { margin: 0; }</style>
+    <script src="https://context7.com/widget.js" data-library="/zwelshman/chat_streamlit"></script>
+    """,
+    height=60,  # give it just enough room
+)
